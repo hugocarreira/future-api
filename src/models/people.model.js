@@ -6,7 +6,7 @@ const PEOPLE_SCHEMA = new SCHEMA({
     last_name: { type: String },
     image: { type: String },
     email: { type: String }
-}, { collection: 'people' })
+}, { collection: 'peoples' })
 
 
 const People = mongoose.model('People', PEOPLE_SCHEMA)
