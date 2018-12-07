@@ -6,6 +6,7 @@ const log = require('consola')
 
 // Config
 const config = require('./config/config')
+const db = require('./config/database')
 global.__basedir = __dirname;
 
 // Routes
