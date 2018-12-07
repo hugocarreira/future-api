@@ -9,5 +9,5 @@ const POSITION_SCHEMA = new SCHEMA({
 }, { collection: 'positions' })
 
 
-const Position = mongoose.model('People', POSITION_SCHEMA)
+const Position = mongoose.model('Position', POSITION_SCHEMA)
 module.exports = Position
