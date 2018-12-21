@@ -2,92 +2,42 @@ import Position from './../models/position.model'
 
 module.exports = {
 
-    getAll(req, res) {
-        Position.find((err, data) => {
+    async getAll(req, res) {
+        await Position.find((err, data) => {
             if(err) {
-                res.status(500).json({result: null, error: err})
-                return
+                res.status(500).send({result: data, error: err})                
             }
-            res.json({result: data})
+            res.status(200).send({result: data, error: err})
         })
     },
     
-    get(req, res) {
-        Position.findById({'_id': req.params.id}, (err, data) => {
+    async get(req, res) {
+        await Position.findById({'_id': req.params.id}, (err, data) => {
             if (err) {
-                res.status(500).json({result: null, error: err})
-                return
+                res.status(500).send({result: data, error: err})                
             }
             if (data == null) {
-                res.status(404).json({result: 'not found', error: null})
-                return
+                res.status(404).send({result: 'not found', error: err})                
             }
-            res.status(200).json({result: data, error: null}) 
+            res.status(200).send({result: data, error: err}) 
         })
     },
     
-    save(req, res) {
-        Position.create(req.body, (err, data) => {
+    async save(req, res) {
+        await Position.create(req.body, (err, data) => {
             if (err) {
-                res.json({result: null, error: err})
-                return
+                res.status(500).send({result: data, error: err})                
             }
-            res.status(201).json({result: data, error: null})
+            res.status(201).send({result: data, error: err})
         })    
     },
     
-    remove(req, res) {
-        Position.deleteOne({'_id': req.params.id}, (err, data) => {
+    async remove(req, res) {
+        await Position.deleteOne({'_id': req.params.id}, (err, data) => {
             if (err) {
-                res.json({result: null, error: err})
-                return
+                res.status(500).send({result: data, error: err})                
             }
-            res.status(200).json({result: {success: true}, error: null})
-        })
-    },
-
-
-    getAll(req, res) {
-        Position.find((err, data) => {
-            if(err) {
-                res.status(500).json({result: null, error: err})
-                return
-            }
-            res.json({result: data})
-        })
-    },
-
-    get(req, res) {
-        Position.findById({'_id': req.params.id}, (err, data) => {
-            if (err) {
-                res.status(500).json({result: null, error: err})
-                return
-            }
-            if (data == null) {
-                res.status(404).json({result: 'not found', error: null})
-                return
-            }
-            res.status(200).json({result: data, error: null}) 
-        })
-    },
-
-    save(req, res) {
-        Position.create(req.body, (err, data) => {
-            if (err) {
-                res.json({result: null, error: err})
-                return
-            }
-            res.status(201).json({result: data, error: null})
-        })    
-    },
-
-    remove(req, res) {
-        Position.deleteOne({'_id': req.params.id}, (err, data) => {
-            if (err) {
-                res.json({result: null, error: err})
-                return
-            }
-            res.status(200).json({result: {success: true}, error: null})
+            res.status(200).send({result: {success: true}, error: err})
         })
     },
 
